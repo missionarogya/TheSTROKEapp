@@ -3,41 +3,64 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/bkg"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/kmes"
+    <TextView android:text="Do you suspect a sudden stroke or onset of illness ?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="10pt"
+        android:textStyle="bold" />
+
+    <TextView android:text="আপনি কি আচমকা অথবা অসুস্থ বোধ করছেন ?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
-        android:clickable="true"
-        android:background="@android:color/transparent"
-        android:contentDescription="kmes"
-        android:src="@drawable/kmes"
-        android:scaleType="fitXY" />
+        android:textSize="10pt"
+        android:textStyle="bold"
+        android:id = "@+id/txtView"/>
+
+    <RadioGroup
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/txtView"
+        android:layout_marginTop="20dp"
+        android:weightSum="1"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:text="YES / হ্যাঁ "
+            android:id="@+id/yes"
+            android:checked="false"
+            android:textSize="20dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NO / না "
+            android:id="@+id/no"
+            android:checked="false"
+            android:textSize="20dp"
+            android:layout_weight="0.13" />
+    </RadioGroup>
+
     <ImageButton
-        android:id="@+id/stroke"
+        android:id="@+id/go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dip"
         android:layout_centerHorizontal="true"
         android:clickable="true"
         android:background="@android:color/transparent"
-        android:contentDescription="stroke"
-        android:src="@drawable/stroke"
+        android:contentDescription="Login"
+        android:src="@drawable/go"
+        android:layout_below="@+id/radioGroup"
         android:scaleType="fitXY" />
-    <ImageButton
-        android:id="@+id/doctor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_centerHorizontal="true"
-        android:clickable="true"
-        android:background="@android:color/transparent"
-        android:contentDescription="doctor"
-        android:src="@drawable/doctor"
-        android:scaleType="fitXY" />
+
+
 
 </RelativeLayout>

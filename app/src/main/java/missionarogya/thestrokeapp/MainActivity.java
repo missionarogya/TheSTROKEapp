@@ -1,6 +1,7 @@
 package missionarogya.thestrokeapp;
 
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -21,28 +22,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ImageButton kmes = (ImageButton) findViewById(R.id.kmes);
-        kmes.setOnClickListener(new View.OnClickListener() {
+        final RadioGroup radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
+
+        final ImageButton go =(ImageButton)findViewById(R.id.go);
+
+        go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "You are being redirected to the KMES mobile website!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://m.kmes.in"));
-                startActivity(intent);
-                MainActivity.this.finish();
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+                if (selectedId == -1) {
+                    Toast.makeText(MainActivity.this, "Please select an option before you proceed.", Toast.LENGTH_SHORT).show();
+                } else if (selectedId == R.id.yes) {
+                    Toast.makeText(MainActivity.this, "Please take the STROKE test.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, EvaluateSymptoms.class);
+                    MainActivity.this.startActivity(intent);
+                    MainActivity.this.finish();
+                } else if (selectedId == R.id.no) {
+                    Intent intent = new Intent(MainActivity.this, Icons.class);
+                    MainActivity.this.startActivity(intent);
+                    MainActivity.this.finish();
+                }
+                // RadioButton radioButton = (RadioButton) findViewById(selectedId);
+                //Toast.makeText(MainActivity.this, Integer.toString(radioButton.getId()), Toast.LENGTH_SHORT).show();
             }
         });
 
-        final ImageButton stroke = (ImageButton) findViewById(R.id.stroke);
-        stroke.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Take the STROKE test!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, EvaluateSymptoms.class);
-                MainActivity.this.startActivity(intent);
-                MainActivity.this.finish();
-            }
-        });
+
+
     }
 
     @Override

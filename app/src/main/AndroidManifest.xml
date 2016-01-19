@@ -5,26 +5,31 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/heart"
-        android:label="FAST ER MED - Medical Care and Emergency"
+        android:label="fastER MED"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:noHistory="true"
-            android:label="ACT FAST - Medical Care and Emergency" >
+            android:label="Medical Care and Emergency"
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Diagnosis"
-            android:noHistory="true"
-            android:label="Hospital Information" >
+            android:label="Hospital Information"
+            android:noHistory="true" >
         </activity>
         <activity
             android:name=".EvaluateSymptoms"
-            android:noHistory="true"
-            android:label="Evaluate the symptoms" >
+            android:label="Evaluate the symptoms"
+            android:noHistory="true" >
+        </activity>
+        <activity
+            android:name=".Icons"
+            android:label="Others" >
         </activity>
     </application>
 

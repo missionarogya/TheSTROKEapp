@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@drawable/bkg"
+    tools:context="missionarogya.thestrokeapp.Icons">
+
+    <ImageButton
+        android:id="@+id/kmes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:layout_centerHorizontal="false"
+        android:clickable="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="kmes"
+        android:src="@drawable/kmes"
+        android:scaleType="fitXY" />
+    <TextView android:text="  Kolkata Medical Emergency System"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="186dp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@+id/kmes"/>
+    <ImageButton
+        android:id="@+id/doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="244dp"
+        android:layout_centerHorizontal="false"
+        android:clickable="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="doctor"
+        android:src="@drawable/doctor"
+        android:scaleType="fitXY" />
+    <TextView android:text="  Request and Book a DOCTOR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@+id/doctor"/>
+
+
+
+
+
+
+</RelativeLayout>
