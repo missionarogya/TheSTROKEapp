@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">The Stroke app</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_symptoms">SymptomsActivity</string>
+    <string name="title_activity_diagnosis">Diagnosis</string>
+
+    <string name="title_activity_questionnaire">QuestionnaireActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_evaluate_symptoms">EvaluateSymptoms</string>
+</resources>
