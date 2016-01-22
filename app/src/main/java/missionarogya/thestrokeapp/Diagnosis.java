@@ -1,5 +1,7 @@
 package missionarogya.thestrokeapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +27,7 @@ public class Diagnosis extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(Diagnosis.this, "You are being redirected to the KMES mobile website!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("http://m.kmes.in"));
+                        Uri.parse("http://m.kmes.in"));
                 startActivity(intent);
                 Diagnosis.this.finish();
             }
@@ -50,7 +52,70 @@ public class Diagnosis extends AppCompatActivity {
                 Diagnosis.this.finish();
             }
         });
+
+        final TextView starRatingHeading = (TextView) findViewById(R.id.textViewStarRatingHeading);
+        starRatingHeading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Diagnosis.this);
+                builder.setTitle("Star Rating Details");
+                builder.setMessage("Static text")
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //do things
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
+
+        final TextView phoneNumber = (TextView) findViewById(R.id.textViewPhoneNumber);
+        phoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               call();
+            }
+        });
+
+        final TextView hospName = (TextView) findViewById(R.id.textViewHospital);
+        hospName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                String map = "http://maps.google.co.in/maps?q=" + "6515 boulevard east, west new york, new jersey 07093";
+                                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+                                startActivity(i);
+                                break;
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+                AlertDialog.Builder builder = new AlertDialog.Builder(Diagnosis.this);
+                builder.setTitle("Address").setMessage("6515 boulevard east, west new york, new jersey 07093").setPositiveButton("Show in Google Maps", dialogClickListener)
+                        .setNegativeButton("OK", dialogClickListener).show();
+            }
+        });
     }
+
+    private void call() {
+        Intent in=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+"+12035510704"));
+        try{
+            startActivity(in);
+        }
+        catch (android.content.ActivityNotFoundException ex){
+            Toast.makeText(getApplicationContext(),"Error : "+ex.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
