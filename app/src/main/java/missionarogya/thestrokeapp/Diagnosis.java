@@ -107,7 +107,7 @@ public class Diagnosis extends AppCompatActivity {
     }
 
     private void call() {
-        Intent in=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+"+12035510704"));
+        Intent in=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+"+12016829255"));
         try{
             startActivity(in);
         }

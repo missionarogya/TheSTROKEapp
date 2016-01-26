@@ -10,12 +10,17 @@ var flist = null;
 var load_init_ctr = null;
 var timer;
 var img_dir = "images/";
+var previousQuestions = [];
+var previousButtonPressed = false;
+var startingQuestionID;
 
 /* Start point */
 function init(){
 	/* read list.json */
-	var oReq = new XMLHttpRequest(); oReq.onload = filelist;
-	oReq.open("get", j_dir+"list.json", true); oReq.send();
+	var oReq = new XMLHttpRequest(); 
+	oReq.onload = filelist;
+	oReq.open("get", j_dir+"list.json", true); 
+	oReq.send();
 }
 /* process each file specfied in list.json */
 function filelist() {
@@ -26,7 +31,8 @@ function filelist() {
 		initLoading();
 		document.getElementById("surveyTotal").innerHTML = ctr;
 		for(i=0; i < ctr; i++) {
-			var oReq = new XMLHttpRequest(); oReq.onload = fetchQuestionList;
+			var oReq = new XMLHttpRequest(); 
+			oReq.onload = fetchQuestionList;
 			oReq.open("get", j_dir+ flist.filelist[i], true);
 			oReq.send();
 		}
@@ -41,6 +47,7 @@ function checkquestionsloaded(){
 	if(load_init_ctr!=null && load_init_ctr == 0) {
 		clearTimeout(timer);
 		/* show the question based on the start point defined */
+		startingQuestionID = flist.start_question;
 		generate_question(flist.start_question);
 		document.getElementById('loading').className = "hide";
 		document.getElementById('qDiv').className ='show';	
@@ -78,6 +85,12 @@ function fetchQuestionList() {
 /* Display the question to the end-user after processing the json */
 function generate_question(questionid) {	
 	current_question = interiew_questions.filter(function (el) { return el.questionid == questionid; });
+	if(current_question[0].questionid == startingQuestionID ){
+		document.getElementById("prev").style.display="none";
+	}else{
+		document.getElementById("prev").style.display="inline";
+	}
+
 	if(current_question[0].isvisible == true) { /* general question to be displayed to the user */
 		/* set question */
 		var q = document.getElementById('question');
@@ -151,13 +164,24 @@ function generate_question(questionid) {
 		processDecisionLogic();
 	}
 }
+function goToPreviousQuestion(){
+	previousButtonPressed = true;
+	processQuestion();
+}
+
 function processQuestion() {
+	if(previousButtonPressed == true){
+		previousButtonPressed = false;
+		generate_question(previousQuestions.pop());
+	}else{
+		previousQuestions.push(current_question[0].questionid);
+	}	
 	console.log(current_question[0]);
 	if(current_question[0].answers[0].type == "comment") {
 		/* skip to next question after showing the comment */
 		if(current_question[0].branchlogic.success == null || current_question[0].branchlogic.failure == null) {
 			generate_final_result();
-		} else { 
+		} else {			
 			generate_question(current_question[0].branchlogic.success);
 		}
 	} else {
@@ -271,7 +295,7 @@ function generate_final_result() {
 		var answer = window[question.questionid];
 		var txt = id + " : " + answer + "&nbsp;&nbsp;<small>&nbsp;Type:" + type + "</small>&nbsp;&nbsp;<small>&nbsp;Visible:" + question.isvisible + "</small>";
 		r.innerHTML = txt;
-		//ansList.appendChild(r);
+		ansList.appendChild(r);
 		JSBridge.showHospitalInformation();
 	}
 }
