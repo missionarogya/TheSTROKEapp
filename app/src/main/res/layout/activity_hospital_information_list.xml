@@ -30,7 +30,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="70dp"
-                android:background="@android:color/white">
+                android:background="@android:color/white"
+                android:id="@+id/hospitalTable">
 
                 <TableRow
                     android:layout_width="fill_parent"

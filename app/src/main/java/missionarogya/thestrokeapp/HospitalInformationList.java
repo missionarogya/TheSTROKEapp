@@ -3,6 +3,8 @@ package missionarogya.thestrokeapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TabHost;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,14 +31,20 @@ public class HospitalInformationList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_information_list);
 
+        TableLayout table = (TableLayout)findViewById(R.id.hospitalTable);
+
         String info = hospitalInformation.getHospitalInformation();
-        Toast.makeText(HospitalInformationList.this,"omg"+info,Toast.LENGTH_SHORT).show();
         if(info!=null && info.length()>0) {
             try {
                 JSONArray hospitalArray = new JSONArray(info);
-                Toast.makeText(HospitalInformationList.this,"fuck"+hospitalArray.length(),Toast.LENGTH_SHORT).show();
-
                 for (int n = 0; n < hospitalArray.length(); n++) {
+
+                    TableRow row = new TableRow(this);
+                    TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
+                    lp.setMargins(2, 2, 2, 2);
+                    row.setLayoutParams(lp);
+                    row.setBackgroundColor(Color.WHITE);
+
                     JSONObject hospital = hospitalArray.getJSONObject(n);
                     String name = hospital.getString("name");
                     String address = hospital.getString("address");
@@ -64,7 +76,50 @@ public class HospitalInformationList extends AppCompatActivity {
                         rating = rating + 1;
                         services = services + "24*7 Vascular Interventiom / Intra-aerial Throbolysis and CATH Lab services \n";
                     }
-                    Toast.makeText(HospitalInformationList.this, name + address + phone + rating + services, Toast.LENGTH_LONG).show();
+                    TextView txtHospitalName = new TextView(this);
+                    txtHospitalName.setText(name);
+                    txtHospitalName.setTextColor(Color.WHITE);
+                    txtHospitalName.setBackgroundColor(Color.BLACK);
+                    txtHospitalName.setTypeface(Typeface.DEFAULT_BOLD);
+                    txtHospitalName.setLayoutParams(new TableRow.LayoutParams(1));
+                    txtHospitalName.setPadding(0, 0, 2, 0);
+                    row.addView(txtHospitalName);
+
+                    TextView txtPhone = new TextView(this);
+                    txtPhone.setText(Integer.toString(phone));
+                    txtPhone.setTextColor(Color.WHITE);
+                    txtPhone.setBackgroundColor(Color.BLACK);
+                    txtPhone.setTypeface(Typeface.DEFAULT);
+                    txtPhone.setPadding(0, 0, 2, 0);
+                    txtPhone.setLayoutParams(new TableRow.LayoutParams(2));
+                    row.addView(txtPhone);
+
+                    TextView txtRating = new TextView(this);
+                    txtRating.setText(Integer.toString(rating));
+                    txtRating.setTextColor(Color.WHITE);
+                    txtRating.setPadding(0,0,2,0);
+                    txtRating.setBackgroundColor(Color.BLACK);
+                    txtRating.setTypeface(Typeface.DEFAULT);
+                    txtRating.setLayoutParams(new TableRow.LayoutParams(3));
+                    row.addView(txtRating);
+
+                    ImageView imageRating = new ImageView(this);
+                    imageRating.setPadding(0,0,2,0);
+                    if(rating == 1){
+                        imageRating.setImageResource(R.drawable.r1);
+                    }else if(rating == 2){
+                        imageRating.setImageResource(R.drawable.r2);
+                    }else if(rating == 3){
+                        imageRating.setImageResource(R.drawable.r3);
+                    }else if(rating == 4){
+                        imageRating.setImageResource(R.drawable.r4);
+                    }else if(rating == 5){
+                        imageRating.setImageResource(R.drawable.r5);
+                    }
+                    imageRating.setLayoutParams(new TableRow.LayoutParams(4));
+                    row.addView(imageRating);
+
+                    table.addView(row);
                 }
             }catch(Exception e){
                 Toast.makeText(HospitalInformationList.this,e.getMessage(),Toast.LENGTH_SHORT).show();
