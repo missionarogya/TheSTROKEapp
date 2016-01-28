@@ -1,9 +1,13 @@
 package missionarogya.thestrokeapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,106 +18,30 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class Diagnosis extends AppCompatActivity {
+    HospitalInformation hospitalInformation = HospitalInformation.getOurInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diagnosis);
 
-        final ImageButton kmes = (ImageButton) findViewById(R.id.kmes);
-        kmes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Diagnosis.this, "You are being redirected to the KMES mobile website!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://m.kmes.in"));
-                startActivity(intent);
-                Diagnosis.this.finish();
-            }
-        });
-
-        final ImageButton stroke = (ImageButton) findViewById(R.id.stroke);
-        stroke.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Diagnosis.this, "Take the STROKE test again!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(Diagnosis.this, EvaluateSymptoms.class);
-                Diagnosis.this.startActivity(intent);
-                Diagnosis.this.finish();
-            }
-        });
-
-        final Button logout = (Button) findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Diagnosis.this, "You are exiting from this app!", Toast.LENGTH_SHORT).show();
-                Diagnosis.this.finish();
-            }
-        });
-
-        final TextView starRatingHeading = (TextView) findViewById(R.id.textViewStarRatingHeading);
-        starRatingHeading.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Diagnosis.this);
-                builder.setTitle("Star Rating Details");
-                builder.setMessage("Static text")
-                        .setCancelable(false)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                //do things
-                            }
-                        });
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-        });
-
-        final TextView phoneNumber = (TextView) findViewById(R.id.textViewPhoneNumber);
-        phoneNumber.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               call();
-            }
-        });
-
-        final TextView hospName = (TextView) findViewById(R.id.textViewHospital);
-        hospName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case DialogInterface.BUTTON_POSITIVE:
-                                //Yes button clicked
-                                String map = "http://maps.google.co.in/maps?q=" + "6515 boulevard east, west new york, new jersey 07093";
-                                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
-                                startActivity(i);
-                                break;
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
-                                break;
-                        }
-                    }
-                };
-                AlertDialog.Builder builder = new AlertDialog.Builder(Diagnosis.this);
-                builder.setTitle("Address").setMessage("6515 boulevard east, west new york, new jersey 07093").setPositiveButton("Show in Google Maps", dialogClickListener)
-                        .setNegativeButton("OK", dialogClickListener).show();
-            }
-        });
-    }
-
-    private void call() {
-        Intent in=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+"+12016829255"));
         try{
-            startActivity(in);
+            JSONParser mJSONParser = new JSONParser(Diagnosis.this, hospitalInformation);
+            mJSONParser.execute("");
+        }catch(Exception e){
+           Toast.makeText(Diagnosis.this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
-        catch (android.content.ActivityNotFoundException ex){
-            Toast.makeText(getApplicationContext(),"Error : "+ex.toString(),Toast.LENGTH_SHORT).show();
-        }
+
     }
 
 
@@ -137,5 +65,71 @@ public class Diagnosis extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+}
+
+class JSONParser extends AsyncTask<String, Void, String> {
+    Activity activity;
+    ProgressDialog progressDialog;
+    String output = null;
+    StringBuilder message = new StringBuilder();
+    HospitalInformation hospitalInformation;
+
+    public JSONParser(Activity activity, HospitalInformation hospitalInformation) {
+        this.activity = activity;
+        this.hospitalInformation = hospitalInformation;
+    }
+
+    @Override
+    public String doInBackground(String... params) {
+        try {
+            URL url = new URL("http://192.168.1.2/strokeapp");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "*");
+            conn.setDoOutput(true);
+            OutputStream os = conn.getOutputStream();
+            os.flush();
+            BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+            while ((output = br.readLine()) != null) {
+                message.append(output.toString());
+            }
+            os.close();
+            conn.getInputStream().close();
+            conn.disconnect();
+        } catch (Exception e) {
+            return new String("Exception: " + e.getMessage());
+        }
+        return message.toString();
+    }
+
+    @Override
+    protected void onPreExecute() {
+        try {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(activity);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            progressDialog.setMessage("Displaying hospital information...");
+            progressDialog.setIndeterminate(true);
+            progressDialog.setProgressPercentFormat(null);
+            progressDialog.setProgressNumberFormat(null);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }catch(Exception e){
+        }
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        try{
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+            progressDialog = null;
+            hospitalInformation.setHospitalInformation(message.toString());
+            HospitalInformation.setOurInstance(hospitalInformation);
+            Intent intent = new Intent(activity, HospitalInformationList.class);
+            activity.startActivity(intent);
+        }catch(Exception e){
+        }
     }
 }

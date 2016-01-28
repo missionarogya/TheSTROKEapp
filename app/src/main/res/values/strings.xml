@@ -11,4 +11,5 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_evaluate_symptoms">EvaluateSymptoms</string>
     <string name="title_activity_icons">Icons</string>
+    <string name="title_activity_hospital_information_list">HospitalInformationList</string>
 </resources>
