@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@drawable/bkg"
+    android:background="#58ACFA"
     tools:context="missionarogya.thestrokeapp.HospitalInformationList">
 
     <ScrollView
@@ -29,15 +29,17 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="170dp"
-                android:background="#58ACFA">
+                android:layout_marginTop="70dp"
+                android:background="@android:color/white">
 
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@android:color/white"
                     android:layout_marginBottom="2dp"
-                    android:layout_marginTop="2dp">
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -65,7 +67,7 @@
                     <TextView
                         android:clickable="true"
                         android:layout_width="wrap_content"
-                        android:text="  STAR rating  "
+                        android:text="  Rating  "
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
                         android:background="@android:color/black"
@@ -73,13 +75,27 @@
                         android:textStyle="bold"
                         android:id="@+id/textViewStarRatingHeading"
                         android:layout_column="3" />
+
+                    <TextView
+                        android:clickable="true"
+                        android:layout_width="wrap_content"
+                        android:text=" STARs"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:background="@android:color/black"
+                        android:layout_marginRight="2dp"
+                        android:textStyle="bold"
+                        android:id="@+id/textViewStars"
+                        android:layout_column="4" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@android:color/white"
                     android:layout_marginBottom="2dp"
-                    android:layout_marginTop="2dp">
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp">
 
                     <TextView
                         android:clickable="true"
@@ -105,12 +121,24 @@
                         android:id="@+id/textViewPhoneNumber"
                         android:layout_column="2" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="5"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:background="@android:color/black"
+                        android:layout_marginRight="2dp"
+                        android:textStyle="normal"
+                        android:clickable="true"
+                        android:id="@+id/textViewR"
+                        android:layout_column="3" />
+
                     <ImageView
                         android:id="@+id/imageView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/r2"
-                        android:layout_column="3"
+                        android:src="@drawable/r5"
+                        android:layout_column="4"
                         android:background="@android:color/black"
                         android:layout_marginRight="2dp"/>
 
@@ -123,7 +151,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="125dp"
+        android:layout_alignParentLeft="true"
         android:clickable="true"
         android:background="@android:color/transparent"
         android:contentDescription="kmes"
@@ -154,7 +182,7 @@
         android:src="@drawable/doctor1"
         android:scaleType="fitXY" />
     <Button
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="5pt"
         android:id="@+id/logout"

@@ -26,20 +26,45 @@ public class HospitalInformationList extends AppCompatActivity {
         setContentView(R.layout.activity_hospital_information_list);
 
         String info = hospitalInformation.getHospitalInformation();
+        Toast.makeText(HospitalInformationList.this,"omg"+info,Toast.LENGTH_SHORT).show();
         if(info!=null && info.length()>0) {
             try {
                 JSONArray hospitalArray = new JSONArray(info);
+                Toast.makeText(HospitalInformationList.this,"fuck"+hospitalArray.length(),Toast.LENGTH_SHORT).show();
+
                 for (int n = 0; n < hospitalArray.length(); n++) {
                     JSONObject hospital = hospitalArray.getJSONObject(n);
                     String name = hospital.getString("name");
                     String address = hospital.getString("address");
                     int phone = hospital.getInt("phone");
-                    boolean cityScan = hospital.getBoolean("cityScan");
-                    boolean intravenousThrombolysis = hospital.getBoolean("intravenousThrombolysis");
-                    boolean strokeTeamNuerosurgeon = hospital.getBoolean("strokeTeamNuerosurgeon");
-                    boolean dedicatedStrokeUnit = hospital.getBoolean("dedicatedStrokeUnit");
-                    boolean cathLab = hospital.getBoolean("cathLab");
-                    Toast.makeText(HospitalInformationList.this, name + address + phone + cityScan + intravenousThrombolysis + strokeTeamNuerosurgeon + dedicatedStrokeUnit + cathLab, Toast.LENGTH_LONG).show();
+                    int rating = 0;
+                    String services = "";
+                    int cityScan = hospital.getInt("cityScan");
+                    if(cityScan == 1){
+                        rating = rating + 1;
+                        services = services + "24*7 City Scan \n";
+                    }
+                    int intravenousThrombolysis = hospital.getInt("intravenousThrombolysis");
+                    if(intravenousThrombolysis == 1){
+                        rating = rating + 1;
+                        services = services + "24*7 Intravenous Thrombolysis \n";
+                    }
+                    int strokeTeamNuerosurgeon = hospital.getInt("strokeTeamNuerosurgeon");
+                    if(strokeTeamNuerosurgeon == 1){
+                        rating = rating + 1;
+                        services = services + "24*7 Stroke Team and Nuerosurgeon availability \n";
+                    }
+                    int dedicatedStrokeUnit = hospital.getInt("dedicatedStrokeUnit");
+                    if(dedicatedStrokeUnit == 1){
+                        rating = rating + 1;
+                        services = services + "24*7 Dedicated Stroke Unit availability \n";
+                    }
+                    int cathLab = hospital.getInt("cathLab");
+                    if(cathLab == 1){
+                        rating = rating + 1;
+                        services = services + "24*7 Vascular Interventiom / Intra-aerial Throbolysis and CATH Lab services \n";
+                    }
+                    Toast.makeText(HospitalInformationList.this, name + address + phone + rating + services, Toast.LENGTH_LONG).show();
                 }
             }catch(Exception e){
                 Toast.makeText(HospitalInformationList.this,e.getMessage(),Toast.LENGTH_SHORT).show();

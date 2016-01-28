@@ -14,8 +14,9 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="Medical Care and Emergency"
-            android:noHistory="true" >
+            android:label="Medical Care and Emergency - ACT FAST"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,12 +25,13 @@
         </activity>
         <activity
             android:name=".Diagnosis"
-            android:label="Hospital Information"
-            android:noHistory="true" >
+            android:label="Diagnosis"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".EvaluateSymptoms"
-            android:label="Evaluate the symptoms"
+            android:label="Evaluate the symptoms."
             android:noHistory="true" >
         </activity>
         <activity
@@ -38,7 +40,9 @@
         </activity>
         <activity
             android:name=".HospitalInformationList"
-            android:label="@string/title_activity_hospital_information_list" >
+            android:screenOrientation="portrait"
+            android:noHistory="true"
+            android:label="STROKE Hospital Information" >
         </activity>
     </application>
 

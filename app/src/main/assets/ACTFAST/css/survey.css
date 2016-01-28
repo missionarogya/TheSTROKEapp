@@ -24,7 +24,7 @@ dd {
 	width:90%; /* adjust the width; make sure the total of both is 100% */ 
 	padding-bottom: 5px;
 }
-button { padding: 8px 15px; font-size: .9em; background-color: #4000FF; color: #fff;
+button { padding: 8px 15px; font-size: .9em; background-color: #58ACFA; color: #fff;
 }
 input[type=text], input[type=number],  textarea {font-size: 1.5em; min-height: 50px; width: 60% margin:2px;}
 input[type=radio], input[type=checkbox] {width: 28px; height: 28px;}
@@ -55,10 +55,10 @@ textarea { border:solid 1px #999; width: 100%; min-width: 200px;}
 #qDiv { margin:27px; }
 #loading { text-align: center; font-size: 14px;}
 #loadingpercent { 
-	background: -webkit-linear-gradient(left, red , blue);
-	background: -o-linear-gradient(right, red, blue);
-	background: -moz-linear-gradient(right, red, blue);
-	background: linear-gradient(to right, red , blue);
+	background: -webkit-linear-gradient(left, green , blue);
+	background: -o-linear-gradient(right, green, blue);
+	background: -moz-linear-gradient(right, green, blue);
+	background: linear-gradient(to right, green , blue);
 	color: #fff;  padding: 20px; width: 0px; height: 20px; padding: 0px;
 }
 
