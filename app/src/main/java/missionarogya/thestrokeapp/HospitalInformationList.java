@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -40,71 +42,77 @@ public class HospitalInformationList extends AppCompatActivity {
                 for (int n = 0; n < hospitalArray.length(); n++) {
 
                     TableRow row = new TableRow(this);
-                    TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
-                    lp.setMargins(2, 2, 2, 2);
+                    TableRow.LayoutParams lp = new TableRow.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT);
                     row.setLayoutParams(lp);
+                    row.setPadding(5,4,4,4);
                     row.setBackgroundColor(Color.WHITE);
 
                     JSONObject hospital = hospitalArray.getJSONObject(n);
-                    String name = hospital.getString("name");
-                    String address = hospital.getString("address");
-                    int phone = hospital.getInt("phone");
+                    final String name = hospital.getString("name");
+                    final String address = hospital.getString("address");
+                    final int phone = hospital.getInt("phone");
                     int rating = 0;
                     String services = "";
                     int cityScan = hospital.getInt("cityScan");
                     if(cityScan == 1){
                         rating = rating + 1;
-                        services = services + "24*7 City Scan \n";
+                        services = services + "City Scan\n";
                     }
                     int intravenousThrombolysis = hospital.getInt("intravenousThrombolysis");
                     if(intravenousThrombolysis == 1){
                         rating = rating + 1;
-                        services = services + "24*7 Intravenous Thrombolysis \n";
+                        services = services + "Intravenous Thrombolysis\n";
                     }
                     int strokeTeamNuerosurgeon = hospital.getInt("strokeTeamNuerosurgeon");
                     if(strokeTeamNuerosurgeon == 1){
                         rating = rating + 1;
-                        services = services + "24*7 Stroke Team and Nuerosurgeon availability \n";
+                        services = services + "Stroke Team and Nuerosurgeon\n";
                     }
                     int dedicatedStrokeUnit = hospital.getInt("dedicatedStrokeUnit");
                     if(dedicatedStrokeUnit == 1){
                         rating = rating + 1;
-                        services = services + "24*7 Dedicated Stroke Unit availability \n";
+                        services = services + "Dedicated Stroke Unit\n";
                     }
                     int cathLab = hospital.getInt("cathLab");
                     if(cathLab == 1){
                         rating = rating + 1;
-                        services = services + "24*7 Vascular Interventiom / Intra-aerial Throbolysis and CATH Lab services \n";
+                        services = services + "Vascular Interventiom / Intra-aerial Throbolysis and CATH Lab\n";
                     }
                     TextView txtHospitalName = new TextView(this);
-                    txtHospitalName.setText(name);
+                    txtHospitalName.setText(" " + name.toUpperCase() + " ");
                     txtHospitalName.setTextColor(Color.WHITE);
                     txtHospitalName.setBackgroundColor(Color.BLACK);
-                    txtHospitalName.setTypeface(Typeface.DEFAULT_BOLD);
+                    txtHospitalName.setTypeface(Typeface.DEFAULT);
                     txtHospitalName.setLayoutParams(new TableRow.LayoutParams(1));
-                    txtHospitalName.setPadding(0, 0, 2, 0);
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)txtHospitalName.getLayoutParams();
+                    params.setMargins(0, 0, 4, 0);
+                    txtHospitalName.setLayoutParams(params);
                     row.addView(txtHospitalName);
 
                     TextView txtPhone = new TextView(this);
-                    txtPhone.setText(Integer.toString(phone));
+                    txtPhone.setText(" " + Integer.toString(phone) + " ");
                     txtPhone.setTextColor(Color.WHITE);
                     txtPhone.setBackgroundColor(Color.BLACK);
                     txtPhone.setTypeface(Typeface.DEFAULT);
-                    txtPhone.setPadding(0, 0, 2, 0);
                     txtPhone.setLayoutParams(new TableRow.LayoutParams(2));
+                    LinearLayout.LayoutParams paramsPhone = (LinearLayout.LayoutParams)txtHospitalName.getLayoutParams();
+                    paramsPhone.setMargins(0, 0, 4, 0);
+                    txtPhone.setLayoutParams(paramsPhone);
                     row.addView(txtPhone);
 
                     TextView txtRating = new TextView(this);
-                    txtRating.setText(Integer.toString(rating));
+                    txtRating.setText(" " + Integer.toString(rating) + " ");
                     txtRating.setTextColor(Color.WHITE);
-                    txtRating.setPadding(0,0,2,0);
                     txtRating.setBackgroundColor(Color.BLACK);
                     txtRating.setTypeface(Typeface.DEFAULT);
                     txtRating.setLayoutParams(new TableRow.LayoutParams(3));
+                    LinearLayout.LayoutParams paramsRating = (LinearLayout.LayoutParams)txtHospitalName.getLayoutParams();
+                    paramsRating.setMargins(0, 0, 4, 0);
+                    txtRating.setLayoutParams(paramsRating);
                     row.addView(txtRating);
 
                     ImageView imageRating = new ImageView(this);
-                    imageRating.setPadding(0,0,2,0);
+                    imageRating.setPadding(0, 0, 2, 0);
                     if(rating == 1){
                         imageRating.setImageResource(R.drawable.r1);
                     }else if(rating == 2){
@@ -116,10 +124,61 @@ public class HospitalInformationList extends AppCompatActivity {
                     }else if(rating == 5){
                         imageRating.setImageResource(R.drawable.r5);
                     }
+                    imageRating.setBackgroundColor(Color.BLACK);
                     imageRating.setLayoutParams(new TableRow.LayoutParams(4));
                     row.addView(imageRating);
+                    final String popUpTxtServices = services;
 
                     table.addView(row);
+
+                    imageRating.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(HospitalInformationList.this);
+                            builder.setTitle("Services available in "+ name.toUpperCase() +" 24*7");
+                            builder.setMessage(popUpTxtServices)
+                                    .setCancelable(false)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            //do things
+                                        }
+                                    });
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                        }
+                    });
+
+                    txtHospitalName.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    switch (which){
+                                        case DialogInterface.BUTTON_POSITIVE:
+                                            //Yes button clicked
+                                            String map = "http://maps.google.co.in/maps?q=" + address ;
+                                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+                                            startActivity(i);
+                                            break;
+                                        case DialogInterface.BUTTON_NEGATIVE:
+                                            //No button clicked
+                                            break;
+                                    }
+                                }
+                            };
+                            AlertDialog.Builder builder = new AlertDialog.Builder(HospitalInformationList.this);
+                            builder.setTitle("Address").setMessage(address).setPositiveButton("Show in Google Maps", dialogClickListener)
+                                    .setNegativeButton("OK", dialogClickListener).show();
+                        }
+                    });
+
+                    txtPhone.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            call(Integer.toString(phone));
+                        }
+                    });
                 }
             }catch(Exception e){
                 Toast.makeText(HospitalInformationList.this,e.getMessage(),Toast.LENGTH_SHORT).show();
@@ -158,13 +217,13 @@ public class HospitalInformationList extends AppCompatActivity {
             }
         });
 
-        final TextView starRatingHeading = (TextView) findViewById(R.id.textViewStarRatingHeading);
-        starRatingHeading.setOnClickListener(new View.OnClickListener() {
+        final TextView servicesHeading = (TextView)findViewById(R.id.textViewStars);
+        servicesHeading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(HospitalInformationList.this);
-                builder.setTitle("Star Rating Details");
-                builder.setMessage("Static text")
+                builder.setTitle("Services");
+                builder.setMessage("Static Text")
                         .setCancelable(false)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
@@ -175,45 +234,10 @@ public class HospitalInformationList extends AppCompatActivity {
                 alert.show();
             }
         });
-
-        final TextView phoneNumber = (TextView) findViewById(R.id.textViewPhoneNumber);
-        phoneNumber.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                call();
-            }
-        });
-
-        final TextView hospName = (TextView) findViewById(R.id.textViewHospital);
-        hospName.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case DialogInterface.BUTTON_POSITIVE:
-                                //Yes button clicked
-                                String map = "http://maps.google.co.in/maps?q=" + "6515 boulevard east, west new york, new jersey 07093";
-                                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
-                                startActivity(i);
-                                break;
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                //No button clicked
-                                break;
-                        }
-                    }
-                };
-                AlertDialog.Builder builder = new AlertDialog.Builder(HospitalInformationList.this);
-                builder.setTitle("Address").setMessage("6515 boulevard east, west new york, new jersey 07093").setPositiveButton("Show in Google Maps", dialogClickListener)
-                        .setNegativeButton("OK", dialogClickListener).show();
-            }
-        });
-
     }
 
-    private void call() {
-        Intent in=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+"+12016829255"));
+    private void call(String phoneNumber) {
+        Intent in=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+phoneNumber));
         try{
             startActivity(in);
         }

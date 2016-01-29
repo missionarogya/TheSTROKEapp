@@ -25,16 +25,14 @@ public class Icons extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW,
                         Uri.parse("http://m.kmes.in"));
                 startActivity(intent);
-                Icons.this.finish();
             }
         });
 
         final ImageButton doctor = (ImageButton) findViewById(R.id.doctor);
-        kmes.setOnClickListener(new View.OnClickListener() {
+        doctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Icons.this, "You are being redirected to the 'Request a DOCTOR app'!", Toast.LENGTH_SHORT).show();
-                Icons.this.finish();
             }
         });
     }

@@ -83,7 +83,7 @@ class JSONParser extends AsyncTask<String, Void, String> {
     @Override
     public String doInBackground(String... params) {
         try {
-            URL url = new URL("http://192.168.1.2/strokeapp");
+            URL url = new URL("http://192.168.1.3/strokeapp");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "*");
