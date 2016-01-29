@@ -7,5 +7,13 @@
     android:background="#58ACFA"
     tools:context="missionarogya.thestrokeapp.Diagnosis">
 
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textStyle="italic"
+        android:text=""
+        android:id="@+id/eroor" />
 
 </RelativeLayout>

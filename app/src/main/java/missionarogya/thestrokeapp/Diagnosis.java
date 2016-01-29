@@ -109,7 +109,7 @@ class JSONParser extends AsyncTask<String, Void, String> {
             super.onPreExecute();
             progressDialog = new ProgressDialog(activity);
             progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progressDialog.setMessage("Displaying hospital information...");
+            progressDialog.setMessage("Retrieving STROKE hospital information...");
             progressDialog.setIndeterminate(true);
             progressDialog.setProgressPercentFormat(null);
             progressDialog.setProgressNumberFormat(null);
@@ -125,10 +125,15 @@ class JSONParser extends AsyncTask<String, Void, String> {
             super.onPostExecute(result);
             progressDialog.dismiss();
             progressDialog = null;
-            hospitalInformation.setHospitalInformation(message.toString());
-            HospitalInformation.setOurInstance(hospitalInformation);
-            Intent intent = new Intent(activity, HospitalInformationList.class);
-            activity.startActivity(intent);
+            if(message.toString().length() > 0) {
+                hospitalInformation.setHospitalInformation(message.toString());
+                HospitalInformation.setOurInstance(hospitalInformation);
+                Intent intent = new Intent(activity, HospitalInformationList.class);
+                activity.startActivity(intent);
+            }else{
+                Intent intent = new Intent(activity, Icons.class);
+                activity.startActivity(intent);
+            }
         }catch(Exception e){
         }
     }
