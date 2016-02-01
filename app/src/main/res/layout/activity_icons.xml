@@ -36,7 +36,7 @@
         android:contentDescription="kmes"
         android:src="@drawable/kmes"
         android:scaleType="fitXY" />
-    <TextView android:text="  KMES - Kolkata Medical Emergency System"
+    <TextView android:text=" KMES-Kolkata Medical Emergency System"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="205dp"
@@ -53,7 +53,7 @@
         android:contentDescription="doctor"
         android:src="@drawable/doctor"
         android:scaleType="fitXY" />
-    <TextView android:text="  Request / Find a Doctor"
+    <TextView android:text=" Request / Find a Doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="285dp"
@@ -61,7 +61,6 @@
         android:layout_toEndOf="@+id/doctor"/>
 
     <Button
-        android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="5pt"
         android:id="@+id/logout"

@@ -50,7 +50,7 @@ public class Icons extends AppCompatActivity {
         stroke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Icons.this, "Plaese take the STROKE test!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Icons.this, "Please take the STROKE test!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(Icons.this, EvaluateSymptoms.class);
                 Icons.this.startActivity(intent);
                 Icons.this.finish();

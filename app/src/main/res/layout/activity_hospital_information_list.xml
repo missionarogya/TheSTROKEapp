@@ -172,7 +172,6 @@
         android:textStyle="bold"
         android:layout_toEndOf="@+id/doctor"/>
     <Button
-        android:textColor="@android:color/black"
         android:textStyle="bold"
         android:textSize="5pt"
         android:id="@+id/logout"
