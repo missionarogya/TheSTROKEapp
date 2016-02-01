@@ -25,7 +25,7 @@
         </activity>
         <activity
             android:name=".Diagnosis"
-            android:label="Kolkata Integrated StrokeSystem"
+            android:label="KISS-Kolkata Int. Stroke System"
             android:noHistory="true"
             android:screenOrientation="portrait">
         </activity>
@@ -42,7 +42,7 @@
             android:name=".HospitalInformationList"
             android:screenOrientation="portrait"
             android:noHistory="true"
-            android:label="Kolkata Integrated StrokeSystem">
+            android:label="KISS-Kolkata Int. Stroke System">
 
         </activity>
     </application>

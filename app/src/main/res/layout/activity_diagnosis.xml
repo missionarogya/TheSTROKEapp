@@ -8,13 +8,52 @@
     tools:context="missionarogya.thestrokeapp.Diagnosis">
 
     <TextView
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:textStyle="italic"
-        android:text=""
+        android:textStyle="bold"
+        android:textSize="10pt"
+        android:layout_marginTop="120dp"
+        android:text="Please check your internet connection or try again later."
         android:visibility="invisible"
-        android:id="@+id/eroor" />
+        android:id="@+id/error" />
+
+    <ImageButton
+        android:id="@+id/refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:clickable="false"
+        android:visibility="invisible"
+        android:background="@android:color/transparent"
+        android:contentDescription="refresh"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/refresh"
+        android:scaleType="fitXY" />
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:clickable="false"
+        android:visibility="invisible"
+        android:background="@android:color/transparent"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="home"
+        android:src="@drawable/home"
+        android:scaleType="fitXY" />
+
+    <Button
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="5pt"
+        android:id="@+id/logout"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        style="?android:attr/borderlessButtonStyle"/>
 
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -35,6 +36,27 @@ public class Icons extends AppCompatActivity {
                 Toast.makeText(Icons.this, "You are being redirected to the 'Request a DOCTOR app'!", Toast.LENGTH_SHORT).show();
             }
         });
+
+        final Button logout = (Button) findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Icons.this, "You are exiting from this app!", Toast.LENGTH_SHORT).show();
+                Icons.this.finish();
+            }
+        });
+
+        final ImageButton stroke = (ImageButton) findViewById(R.id.stroke);
+        stroke.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Icons.this, "Plaese take the STROKE test!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Icons.this, EvaluateSymptoms.class);
+                Icons.this.startActivity(intent);
+                Icons.this.finish();
+            }
+        });
+
     }
 
     @Override

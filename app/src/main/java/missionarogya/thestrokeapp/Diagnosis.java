@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -36,13 +37,47 @@ public class Diagnosis extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diagnosis);
 
+        final TextView error = (TextView)findViewById(R.id.error);
+        final ImageButton refresh = (ImageButton)findViewById(R.id.refresh);
+        final ImageButton home = (ImageButton)findViewById(R.id.home);
+
+        getHospitalInformation(error, refresh, home);
+
+       home.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(Diagnosis.this, Icons.class);
+               Diagnosis.this.startActivity(intent);
+               Diagnosis.this.finish();
+           }
+       });
+
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getHospitalInformation(error, refresh, home);
+            }
+        });
+
+        final Button logout = (Button) findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Diagnosis.this, "You are exiting from this app!", Toast.LENGTH_SHORT).show();
+                Diagnosis.this.finish();
+            }
+        });
+
+
+    }
+
+    private void getHospitalInformation(TextView error, ImageButton home, ImageButton refresh){
         try{
-            JSONParser mJSONParser = new JSONParser(Diagnosis.this, hospitalInformation);
+            JSONParser mJSONParser = new JSONParser(Diagnosis.this, hospitalInformation, error, refresh, home);
             mJSONParser.execute("");
         }catch(Exception e){
-           Toast.makeText(Diagnosis.this,e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(Diagnosis.this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
-
     }
 
 
@@ -75,10 +110,16 @@ class JSONParser extends AsyncTask<String, Void, String> {
     String output = null;
     StringBuilder message = new StringBuilder();
     HospitalInformation hospitalInformation;
+    TextView error;
+    ImageButton refresh;
+    ImageButton home;
 
-    public JSONParser(Activity activity, HospitalInformation hospitalInformation) {
+    public JSONParser(Activity activity, HospitalInformation hospitalInformation, TextView error, ImageButton home, ImageButton refresh) {
         this.activity = activity;
         this.hospitalInformation = hospitalInformation;
+        this.error = error;
+        this.refresh = refresh;
+        this.home = home;
     }
 
     @Override
@@ -132,8 +173,11 @@ class JSONParser extends AsyncTask<String, Void, String> {
                 Intent intent = new Intent(activity, HospitalInformationList.class);
                 activity.startActivity(intent);
             }else{
-                Intent intent = new Intent(activity, Icons.class);
-                activity.startActivity(intent);
+                error.setVisibility(View.VISIBLE);
+                home.setVisibility(View.VISIBLE);
+                refresh.setVisibility(View.VISIBLE);
+                home.setClickable(true);
+                refresh.setClickable(true);
             }
         }catch(Exception e){
         }

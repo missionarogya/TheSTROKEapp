@@ -7,28 +7,46 @@
     android:background="#58ACFA"
     tools:context="missionarogya.thestrokeapp.Icons">
 
+
+    <ImageButton
+        android:id="@+id/stroke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="false"
+        android:clickable="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="stroke"
+        android:src="@drawable/stroke2"
+        android:scaleType="fitXY" />
+    <TextView android:text="  Take the STROKE test."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="125dp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@+id/stroke"/>
     <ImageButton
         android:id="@+id/kmes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="180dp"
         android:layout_centerHorizontal="false"
         android:clickable="true"
         android:background="@android:color/transparent"
         android:contentDescription="kmes"
         android:src="@drawable/kmes"
         android:scaleType="fitXY" />
-    <TextView android:text="  Kolkata Medical Emergency System   (KMES)"
+    <TextView android:text="  KMES - Kolkata Medical Emergency System"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="186dp"
+        android:layout_marginTop="205dp"
         android:textStyle="bold"
         android:layout_toEndOf="@+id/kmes"/>
     <ImageButton
         android:id="@+id/doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="260dp"
         android:layout_centerHorizontal="false"
         android:clickable="true"
         android:background="@android:color/transparent"
@@ -38,11 +56,20 @@
     <TextView android:text="  Request / Find a Doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="285dp"
         android:textStyle="bold"
         android:layout_toEndOf="@+id/doctor"/>
 
-
+    <Button
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="5pt"
+        android:id="@+id/logout"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        style="?android:attr/borderlessButtonStyle"/>
 
 
 
