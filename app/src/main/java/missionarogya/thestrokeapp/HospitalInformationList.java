@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +46,7 @@ public class HospitalInformationList extends AppCompatActivity {
                     TableRow.LayoutParams lp = new TableRow.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT);
                     row.setLayoutParams(lp);
                     row.setPadding(5,4,4,4);
-                    row.setBackgroundColor(Color.WHITE);
+                    row.setBackgroundColor(Color.parseColor("#58ACFA"));
 
                     JSONObject hospital = hospitalArray.getJSONObject(n);
                     final String name = hospital.getString("name");
@@ -79,7 +80,8 @@ public class HospitalInformationList extends AppCompatActivity {
                         services = services + "Vascular Interventiom / Intra-aerial Throbolysis and CATH Lab\n";
                     }
                     TextView txtHospitalName = new TextView(this);
-                    txtHospitalName.setText(" " + name.toUpperCase() + " ");
+                    txtHospitalName.setPaintFlags(txtHospitalName.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                    txtHospitalName.setText(name.toUpperCase());
                     txtHospitalName.setTextColor(Color.WHITE);
                     txtHospitalName.setBackgroundColor(Color.BLACK);
                     txtHospitalName.setTypeface(Typeface.DEFAULT);
@@ -90,7 +92,8 @@ public class HospitalInformationList extends AppCompatActivity {
                     row.addView(txtHospitalName);
 
                     TextView txtPhone = new TextView(this);
-                    txtPhone.setText(" " + Integer.toString(phone) + " ");
+                    txtPhone.setPaintFlags(txtPhone.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+                    txtPhone.setText(Integer.toString(phone));
                     txtPhone.setTextColor(Color.WHITE);
                     txtPhone.setBackgroundColor(Color.BLACK);
                     txtPhone.setTypeface(Typeface.DEFAULT);
@@ -99,17 +102,6 @@ public class HospitalInformationList extends AppCompatActivity {
                     paramsPhone.setMargins(0, 0, 4, 0);
                     txtPhone.setLayoutParams(paramsPhone);
                     row.addView(txtPhone);
-
-                    TextView txtRating = new TextView(this);
-                    txtRating.setText(" " + Integer.toString(rating) + " ");
-                    txtRating.setTextColor(Color.WHITE);
-                    txtRating.setBackgroundColor(Color.BLACK);
-                    txtRating.setTypeface(Typeface.DEFAULT);
-                    txtRating.setLayoutParams(new TableRow.LayoutParams(3));
-                    LinearLayout.LayoutParams paramsRating = (LinearLayout.LayoutParams)txtHospitalName.getLayoutParams();
-                    paramsRating.setMargins(0, 0, 4, 0);
-                    txtRating.setLayoutParams(paramsRating);
-                    row.addView(txtRating);
 
                     ImageView imageRating = new ImageView(this);
                     imageRating.setPadding(0, 0, 2, 0);
@@ -125,7 +117,7 @@ public class HospitalInformationList extends AppCompatActivity {
                         imageRating.setImageResource(R.drawable.r5);
                     }
                     imageRating.setBackgroundColor(Color.BLACK);
-                    imageRating.setLayoutParams(new TableRow.LayoutParams(4));
+                    imageRating.setLayoutParams(new TableRow.LayoutParams(3));
                     row.addView(imageRating);
                     final String popUpTxtServices = services;
 
@@ -168,7 +160,7 @@ public class HospitalInformationList extends AppCompatActivity {
                                 }
                             };
                             AlertDialog.Builder builder = new AlertDialog.Builder(HospitalInformationList.this);
-                            builder.setTitle("Address").setMessage(address).setPositiveButton("Show in Google Maps", dialogClickListener)
+                            builder.setTitle("Location of "+name.toUpperCase()).setMessage(address).setPositiveButton("Show in Google Maps", dialogClickListener)
                                     .setNegativeButton("OK", dialogClickListener).show();
                         }
                     });
@@ -218,6 +210,7 @@ public class HospitalInformationList extends AppCompatActivity {
         });
 
         final TextView servicesHeading = (TextView)findViewById(R.id.textViewStars);
+        servicesHeading.setPaintFlags(servicesHeading.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         servicesHeading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -29,14 +29,14 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="70dp"
-                android:background="@android:color/white"
+                android:layout_marginTop="200dp"
+                android:background="#58ACFA"
                 android:id="@+id/hospitalTable">
 
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:background="@android:color/white"
+                    android:background="#58ACFA"
                     android:layout_marginBottom="2dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginLeft="2dp"
@@ -68,18 +68,6 @@
                     <TextView
                         android:clickable="true"
                         android:layout_width="wrap_content"
-                        android:text=" Rating "
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:background="@android:color/black"
-                        android:layout_marginRight="2dp"
-                        android:textStyle="bold"
-                        android:id="@+id/textViewStarRatingHeading"
-                        android:layout_column="3" />
-
-                    <TextView
-                        android:clickable="true"
-                        android:layout_width="wrap_content"
                         android:text="  Services  "
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
@@ -87,12 +75,12 @@
                         android:layout_marginRight="2dp"
                         android:textStyle="bold"
                         android:id="@+id/textViewStars"
-                        android:layout_column="4" />
+                        android:layout_column="3" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:background="@android:color/white"
+                    android:background="#58ACFA"
                     android:layout_marginBottom="2dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginLeft="2dp"
@@ -121,21 +109,10 @@
                         android:layout_column="2" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:background="@android:color/black"
-                        android:layout_marginRight="2dp"
-                        android:textStyle="normal"
-                        android:clickable="true"
-                        android:id="@+id/textViewR"
-                        android:layout_column="3" />
-
-                    <TextView
                         android:id="@+id/imageView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="4"
+                        android:layout_column="3"
                         android:background="@android:color/black"
                         android:layout_marginRight="1dp"/>
 
@@ -147,37 +124,53 @@
         android:id="@+id/kmes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="130dp"
         android:layout_alignParentLeft="true"
         android:clickable="true"
         android:background="@android:color/transparent"
         android:contentDescription="kmes"
         android:src="@drawable/kmes1"
         android:scaleType="fitXY" />
+    <TextView android:text="   Kolkata Medical Emergency System (KMES)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="135dp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@+id/kmes"/>
     <ImageButton
         android:id="@+id/stroke"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:clickable="true"
         android:background="@android:color/transparent"
         android:contentDescription="stroke"
-        android:layout_toEndOf="@+id/doctor"
+        android:layout_alignParentLeft="true"
         android:src="@drawable/stroke1"
         android:scaleType="fitXY" />
+    <TextView android:text="   Take the STROKE test again!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@+id/kmes"/>
     <ImageButton
         android:id="@+id/doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_toEndOf="@+id/kmes"
+        android:layout_marginTop="80dp"
+        android:layout_alignParentLeft="true"
         android:clickable="true"
         android:background="@android:color/transparent"
         android:contentDescription="doctor"
         android:src="@drawable/doctor1"
         android:scaleType="fitXY" />
+    <TextView android:text="   Request / Find a Doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@+id/doctor"/>
     <Button
         android:textColor="@android:color/black"
         android:textStyle="bold"
