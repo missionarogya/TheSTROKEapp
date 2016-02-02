@@ -41,6 +41,12 @@ public class HospitalInformationList extends AppCompatActivity {
         setContentView(R.layout.activity_hospital_information_list);
 
         TableLayout table = (TableLayout)findViewById(R.id.hospitalTable);
+        table.setColumnStretchable(0, true);
+        table.setColumnShrinkable(0, false);
+        table.setColumnStretchable(1, false);
+        table.setColumnShrinkable(1, false);
+        table.setColumnStretchable(2,false);
+        table.setColumnShrinkable(2,false);
 
         String info = hospitalInformation.getHospitalInformation();
         if(info!=null && info.length()>0) {
@@ -95,9 +101,9 @@ public class HospitalInformationList extends AppCompatActivity {
                 final String hospitalServices = h.getServices();
 
                 TableRow row = new TableRow(this);
-                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT);
+                TableRow.LayoutParams lp = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT);
                 row.setLayoutParams(lp);
-                row.setPadding(8, 8, 8, 8);//
+                row.setPadding(8, 8, 8, 8);
                 row.setBackgroundColor(Color.parseColor("#58ACFA"));
                 row.setGravity(Gravity.CENTER);
 
@@ -108,7 +114,7 @@ public class HospitalInformationList extends AppCompatActivity {
                 txtHospitalName.setTextColor(Color.WHITE);
                 txtHospitalName.setBackgroundColor(Color.BLACK);
                 txtHospitalName.setTypeface(Typeface.DEFAULT);
-                txtHospitalName.setLayoutParams(new TableRow.LayoutParams(1));
+                txtHospitalName.setLayoutParams(new TableRow.LayoutParams(0));
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)txtHospitalName.getLayoutParams();
                 params.setMargins(0, 0, 10, 0);
                 txtHospitalName.setLayoutParams(params);
@@ -121,7 +127,7 @@ public class HospitalInformationList extends AppCompatActivity {
                 txtPhone.setTextColor(Color.WHITE);
                 txtPhone.setBackgroundColor(Color.BLACK);
                 txtPhone.setTypeface(Typeface.DEFAULT);
-                txtPhone.setLayoutParams(new TableRow.LayoutParams(2));
+                txtPhone.setLayoutParams(new TableRow.LayoutParams(1));
                 LinearLayout.LayoutParams paramsPhone = (LinearLayout.LayoutParams)txtHospitalName.getLayoutParams();
                 paramsPhone.setMargins(0, 0, 10, 0);
                 txtPhone.setLayoutParams(paramsPhone);
@@ -141,7 +147,7 @@ public class HospitalInformationList extends AppCompatActivity {
                     imageRating.setImageResource(R.drawable.r5);
                 }
                 imageRating.setBackgroundColor(Color.BLACK);
-                imageRating.setLayoutParams(new TableRow.LayoutParams(3));
+                imageRating.setLayoutParams(new TableRow.LayoutParams(2));
                 row.addView(imageRating);
 
                 table.addView(row);

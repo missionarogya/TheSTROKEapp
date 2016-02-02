@@ -5,35 +5,46 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="Do you suspect a sudden stroke or onset of illness ?"
+    <TextView android:text="Do you suspect a stroke or sudden onset of illness ?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"
-        android:textSize="10pt"
-        android:textStyle="bold" />
-
-    <TextView android:text="আপনি কি আচমকা অথবা অসুস্থ বোধ করছেন ?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:textSize="10pt"
         android:textStyle="bold"
-        android:id = "@+id/txtView"/>
+        android:id = "@+id/txtView0"/>
+
+    <TextView android:text="আপনি একটি স্ট্রোক বা অসুস্থতা হঠাত্ সূত্রপাত সন্দেহ করবেন না ?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="10pt"
+        android:textStyle="bold"
+        android:id = "@+id/txtView1"/>
+
+    <TextView android:text="आप एक स्ट्रोक या बीमारी के अचानक शुरू होने पर शक है ?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="155dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="10pt"
+        android:textStyle="bold"
+        android:id = "@+id/txtView2"/>
 
     <RadioGroup
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/txtView"
-        android:layout_marginTop="20dp"
+        android:layout_height="95dp"
+        android:layout_below="@+id/txtView2"
+        android:layout_marginTop="15dp"
         android:weightSum="1"
+        android:layout_marginLeft="40dp"
         android:id="@+id/radioGroup">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="55dp"
-            android:text="YES / হ্যাঁ "
+            android:text="YES / হ্যাঁ / हाँ "
             android:id="@+id/yes"
             android:checked="false"
             android:textSize="20dp" />
@@ -41,7 +52,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NO / না "
+            android:text="NO / না / नहीं "
             android:id="@+id/no"
             android:checked="false"
             android:textSize="20dp"

@@ -24,19 +24,19 @@
             android:layout_marginTop="5dip">
 
             <TableLayout
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:stretchColumns="1"
                 android:layout_marginTop="200dp"
                 android:background="#58ACFA"
-                android:id="@+id/hospitalTable">
+                android:id="@+id/hospitalTable"
+                android:stretchColumns="0">
 
                 <TableRow
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
                     android:background="#58ACFA"
                     android:layout_marginBottom="2dp"
                     android:layout_marginTop="2dp"
@@ -45,17 +45,20 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:text="  Hospital  "
+                        android:layout_weight="1"
+                        android:text="     Hospital     "
+                        android:gravity="center"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
                         android:background="@android:color/black"
                         android:textStyle="bold"
                         android:id="@+id/textView1"
-                        android:layout_column="1"
+                        android:layout_column="0"
                         android:layout_marginRight="3dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
+                        android:layout_weight="1"
                         android:text="  Phone number  "
                         android:textColor="@android:color/white"
                         android:background="@android:color/black"
@@ -63,20 +66,22 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:id="@+id/textView2"
-                        android:layout_column="2"
-                        android:clickable="true"/>
+                        android:layout_column="1"
+                        android:gravity="center"/>
 
                     <TextView
-                        android:clickable="true"
                         android:layout_width="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
                         android:text="Services"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
                         android:background="@android:color/black"
                         android:layout_marginRight="0dp"
+                        android:gravity="center"
                         android:textStyle="bold"
                         android:id="@+id/textViewStars"
-                        android:layout_column="3" />
+                        android:layout_column="2" />
                 </TableRow>
                 <TableRow
                     android:layout_width="fill_parent"
@@ -88,6 +93,7 @@
                     android:layout_marginRight="2dp">
 
                     <TextView
+                        android:layout_weight="1"
                         android:clickable="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -96,9 +102,10 @@
                         android:layout_marginRight="3dp"
                         android:textStyle="bold"
                         android:id="@+id/textViewHospital"
-                        android:layout_column="1" />
+                        android:layout_column="0" />
 
                     <TextView
+                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
@@ -107,13 +114,13 @@
                         android:textStyle="normal"
                         android:clickable="true"
                         android:id="@+id/textViewPhoneNumber"
-                        android:layout_column="2" />
-
+                        android:layout_column="1" />
                     <TextView
+                        android:layout_weight="1"
                         android:id="@+id/imageView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_column="3"
+                        android:layout_column="2"
                         android:background="@android:color/black"
                         android:layout_marginRight="0dp"/>
 
