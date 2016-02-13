@@ -8,11 +8,11 @@ import java.util.Comparator;
 public class Hospital implements Comparable<Hospital> {
     private String name;
     private String address;
-    private int phoneNumber;
+    private String phoneNumber;
     private int rating;
     private String services;
 
-    Hospital(String name, String address, int phoneNumber, int rating, String services){
+    Hospital(String name, String address, String phoneNumber, int rating, String services){
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -44,11 +44,11 @@ public class Hospital implements Comparable<Hospital> {
         this.address = address;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -41,12 +41,6 @@ public class HospitalInformationList extends AppCompatActivity {
         setContentView(R.layout.activity_hospital_information_list);
 
         TableLayout table = (TableLayout)findViewById(R.id.hospitalTable);
-        table.setColumnStretchable(0, true);
-        table.setColumnShrinkable(0, false);
-        table.setColumnStretchable(1, false);
-        table.setColumnShrinkable(1, false);
-        table.setColumnStretchable(2,false);
-        table.setColumnShrinkable(2,false);
 
         String info = hospitalInformation.getHospitalInformation();
         if(info!=null && info.length()>0) {
@@ -57,7 +51,7 @@ public class HospitalInformationList extends AppCompatActivity {
                     JSONObject hospital = hospitalArray.getJSONObject(n);
                     final String name = hospital.getString("name");
                     final String address = hospital.getString("address");
-                    final int phone = hospital.getInt("phone");
+                    final String phone = hospital.getString("phone");
                     int rating = 0;
                     String services = "";
                     int cityScan = hospital.getInt("cityScan");
@@ -73,7 +67,7 @@ public class HospitalInformationList extends AppCompatActivity {
                     int strokeTeamNuerosurgeon = hospital.getInt("strokeTeamNuerosurgeon");
                     if(strokeTeamNuerosurgeon == 1){
                         rating = rating + 1;
-                        services = services + "Stroke Team and Nuerosurgeon\n";
+                        services = services + "Stroke Team and Neurosurgeon\n";
                     }
                     int dedicatedStrokeUnit = hospital.getInt("dedicatedStrokeUnit");
                     if(dedicatedStrokeUnit == 1){
@@ -83,7 +77,7 @@ public class HospitalInformationList extends AppCompatActivity {
                     int cathLab = hospital.getInt("cathLab");
                     if(cathLab == 1){
                         rating = rating + 1;
-                        services = services + "Vascular Interventiom / Intra-aerial Throbolysis and CATH Lab\n";
+                        services = services + "Vascular Intervention / Intra-aerial Thrombolysis and CATH Lab\n";
                     }
                     hospitals.add(new Hospital(name, address, phone, rating, services));
                     Collections.sort(hospitals);
@@ -95,8 +89,8 @@ public class HospitalInformationList extends AppCompatActivity {
 
             for(Hospital h : hospitals){
 
-                final String hospitalName = h.getName().toUpperCase();
-                final String hospitalPhone = Integer.toString(h.getPhoneNumber());
+                final String hospitalName = h.getName();
+                final String hospitalPhone = h.getPhoneNumber();
                 final String hospitalAddress = h.getAddress();
                 final String hospitalServices = h.getServices();
 
