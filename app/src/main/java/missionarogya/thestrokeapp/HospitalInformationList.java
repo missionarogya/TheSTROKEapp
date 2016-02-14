@@ -57,27 +57,27 @@ public class HospitalInformationList extends AppCompatActivity {
                     int cityScan = hospital.getInt("cityScan");
                     if(cityScan == 1){
                         rating = rating + 1;
-                        services = services + "City Scan\n";
+                        services = services + "City Scan\n\n";
                     }
                     int intravenousThrombolysis = hospital.getInt("intravenousThrombolysis");
                     if(intravenousThrombolysis == 1){
                         rating = rating + 1;
-                        services = services + "Intravenous Thrombolysis\n";
+                        services = services + "Intravenous Thrombolysis\n\n";
                     }
                     int strokeTeamNuerosurgeon = hospital.getInt("strokeTeamNuerosurgeon");
                     if(strokeTeamNuerosurgeon == 1){
                         rating = rating + 1;
-                        services = services + "Stroke Team and Neurosurgeon\n";
+                        services = services + "Stroke Team and Neurosurgeon\n\n";
                     }
                     int dedicatedStrokeUnit = hospital.getInt("dedicatedStrokeUnit");
                     if(dedicatedStrokeUnit == 1){
                         rating = rating + 1;
-                        services = services + "Dedicated Stroke Unit\n";
+                        services = services + "Dedicated Stroke Unit\n\n";
                     }
                     int cathLab = hospital.getInt("cathLab");
                     if(cathLab == 1){
                         rating = rating + 1;
-                        services = services + "Vascular Intervention / Intra-aerial Thrombolysis and CATH Lab\n";
+                        services = services + "Vascular Intervention / Intra-aerial Thrombolysis and CATH Lab\n\n";
                     }
                     hospitals.add(new Hospital(name, address, phone, rating, services));
                     Collections.sort(hospitals);
